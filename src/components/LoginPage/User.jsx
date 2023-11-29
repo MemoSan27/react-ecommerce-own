@@ -20,8 +20,8 @@ const User = () => {
     const logout = () => {
       localStorage.clear();
       dispatch(setIsLogged(false));
-      navigate('/login');
       dispatch(setCart([]));
+      navigate('/login');
     }
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import useAuth from '../../hooks/useAuth';
 import logo from "../../assets/img/onshop.png";
@@ -18,6 +18,14 @@ const FormRegister = () => {
 
     const submit = (data) => {
         registerUser(data);
+        reset({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            phone: '',
+        })
+        navigate('/login')
     }
 
   return (
@@ -26,30 +34,29 @@ const FormRegister = () => {
         <div className="shop shop2" onClick={handleNavigateHome}>
           <img src={logo} alt="Company Logo" />
         </div>
-        
         <label>
             <span className="form__span">First Name:</span>
-            <input {...register('firstName')} type='text' className="form__input"/>
+            <input {...register('firstName')} type='text' className="form__input" required/>
         </label>
 
         <label>
             <span className="form__span">Last Name:</span>
-            <input {...register('lastName')} type='text' className="form__input"/>
+            <input {...register('lastName')} type='text' className="form__input" required/>
         </label>
 
         <label>
             <span className="form__span">Email:</span>
-            <input {...register('email')} type='email' className="form__input"/>
+            <input {...register('email')} type='email' className="form__input" required/>
         </label>
 
         <label>
             <span className="form__span">Password:</span>
-            <input {...register('password')} type='password' className="form__input"/>
+            <input {...register('password')} type='password' className="form__input" required/>
         </label>
 
         <label>
             <span className="form__span">Phone:</span>
-            <input {...register('phone')} type='text' className="form__input"/>
+            <input {...register('phone')} type='text' className="form__input" required/>
         </label>
 
         <button className="form__submit">Register</button>

@@ -33,7 +33,7 @@ const FormLogin = () => {
       setError(false);
       setErrorMesage('');
       if(result.ok){
-        reset({
+          reset({
               email: '',
               password: '',
           })

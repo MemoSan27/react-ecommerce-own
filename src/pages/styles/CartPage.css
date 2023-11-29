@@ -1,8 +1,23 @@
 .cart{
-    min-height: 100vh;
+    min-height: 80vh;
 }
 .container2{
-    max-width: 120rem;
+    max-width: 70rem;
     margin: 0 auto;
     width: 90%;
+}
+.cart__card{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin-top: 8rem;
+}
+.hr{
+    margin-top: 3rem;
+}
+
+.cart__footer{
+    display: flex;
+    justify-content: end;
+    gap: 5rem;
 }

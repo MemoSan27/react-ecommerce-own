@@ -5,3 +5,4 @@ const getConfigToken = () => ({
 })
 
 export default getConfigToken
+

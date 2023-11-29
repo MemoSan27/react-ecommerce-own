@@ -30,7 +30,7 @@ const Header = () => {
     }
 
     const localst = JSON.parse(localStorage?.getItem('user'))
-    const completeName = `${localst?.name} ${localst?.lastname}`
+    const completeName = `${localst?.name}`
 
   return (
     <header className='header'>

@@ -18,10 +18,27 @@ const User = () => {
     const completeName = `${localst?.name} ${localst?.lastname}`
     
     const logout = () => {
-      localStorage.clear();
-      dispatch(setIsLogged(false));
-      dispatch(setCart([]));
-      navigate('/login');
+      Swal.fire({
+        title: `Are you sure that you want to logout ${completeName} ?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          dispatch(setIsLogged(false));
+          dispatch(setCart([]));
+          navigate('/login');
+          Swal.fire({
+            icon: "success",
+            title: `You have logged out success`,
+            timer: 1000,
+         });
+        }
+      });
+      
     }
 
   return (

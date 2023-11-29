@@ -20,11 +20,11 @@ const CartPage = () => {
     return acc + cv.product.price * cv.quantity
   }, 0)
 
-  
+    
 
   return (
     <div className='container2 cart'>
-      <h1 className='page__title'>Your articles inside your cart</h1>
+      <h1 className='page__title cart__title'>Your articles inside your cart</h1>
       <div className='cart__card'>
         {
           cart?.map(product => (
@@ -35,14 +35,22 @@ const CartPage = () => {
           ))
         }
       </div>
-      <hr className='hr' />
-      <footer className='purchase__section'>
-        <button className='btnCheckout'> <span> Checkout </span> <i className='creditCard bx bxs-credit-card'></i></button>
-        <div className='cart__footer'>
-          <span className='cart__card-title totals'> Total: </span>
-          <span className='cart__card-title totals'> $ &nbsp;  {addComa(totalPriceCart.toFixed(2))} </span>
-        </div >
-      </footer>
+      { cart?.[0] 
+       ? (
+        <>
+        <hr className='hr' />
+        <footer className='purchase__section'>
+          <button className='btnCheckout'> <span> Checkout </span> <i className='creditCard bx bxs-credit-card'></i></button>
+          <div className='cart__footer'>
+            <span className='cart__card-title totals'> Total: </span>
+            <span className='cart__card-title totals'> $ &nbsp;  {addComa(totalPriceCart.toFixed(2))} </span>
+          </div >
+        </footer>
+        </>
+      )
+        : (<><hr className='hr' /> <h1 className='page__title cart__title'> No articles in your car yet</h1></>)
+      }
+      
     </div>
   )
 }

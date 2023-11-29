@@ -141,7 +141,7 @@ label{
     color: white !important;
 }
 .swal2-popup {
-    padding: 2rem 0 !important;
+    padding: 2rem 2rem !important;
     background-color: rgba(0, 0, 0, 0.6) !important;
     border: 3px solid var(--bgLoginRegister);
     box-shadow: 1.1rem 1rem 7.9rem 0rem rgba(0,0,0,0.75);
@@ -154,4 +154,15 @@ label{
 .swal2-success-circular-line-right,
 .swal2-success-fix{
     background-color: transparent !important;
+}
+.swal2-icon.swal2-warning {
+    color: yellow !important;
+    border-color: yellow !important;
+}
+.swal2-title{
+    margin-top: 2rem !important;
+}
+.swal2-html-container{
+    font-size: 1.5rem !important;
+    color: white !important;
 }

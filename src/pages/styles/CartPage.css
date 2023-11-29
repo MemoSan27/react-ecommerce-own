@@ -62,3 +62,11 @@
         font-size: 3rem;
     }
 }
+.cart__title{
+    margin-top: 2rem;
+}
+@media ( min-width: 768px ) { 
+    .cart__title{
+        font-size: 4.5rem;
+    }
+}

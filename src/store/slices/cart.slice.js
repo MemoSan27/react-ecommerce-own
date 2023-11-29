@@ -32,8 +32,24 @@ export const addProductToCartThunk = (productId, quantity = 1) => (dispatch) => 
         quantity,
     }
     axios.post(url, data, getConfigToken())
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err))
+    .then(res => {
+        console.log(res.data)
+        Swal.fire({
+            icon: "success",
+            title: `Product added to cart success`,
+            timer: 1000,
+         });
+    })
+    .catch(err => {
+        if(err.response.data.error === 'Product already added to cart'){
+            Swal.fire({
+                icon: "error",
+                title: `Product already in your cart`,
+                timer: 1500,
+             });
+        }
+        console.log(err)
+    })
 }
 
 export const deleteProductFromCartThunk = (id) => (dispatch) => {
@@ -41,6 +57,11 @@ export const deleteProductFromCartThunk = (id) => (dispatch) => {
     axios.delete(url, getConfigToken())
     .then(res => {
         dispatch(removeFromCart(id));
-        console.log(res.data)})
+        Swal.fire({
+            icon: "success",
+            title: `Product removed from cart success`,
+            timer: 1000,
+        });    
+    })
     .catch(err => console.log(err))
 }

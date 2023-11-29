@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './styles/ProductCard.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCartThunk } from '../../store/slices/cart.slice';
 
 const ProductCard = ({ product }) => {
+
+    const logged = useSelector(store => store.login)
 
     const [ hover, setHover ] = useState(false);
 
@@ -23,7 +25,12 @@ const ProductCard = ({ product }) => {
 
     const handleAddCart = (e) => {
       e.stopPropagation();
-      dispatch(addProductToCartThunk(product.id));
+      if(logged === true){
+        dispatch(addProductToCartThunk(product.id));
+      }
+      else{
+        navigate('/login')
+      }
     }
 
   return (

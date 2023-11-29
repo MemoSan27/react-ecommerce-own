@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
 import logo from "../../assets/img/onshop.png";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const FormLogin = () => {
 
+  const logged = useSelector(store => store.login);
   const navigate = useNavigate();
 
     const handleNavigateHome = () => {
@@ -17,12 +19,18 @@ const FormLogin = () => {
       navigate(`/register`)
   }
 
+  console.log(logged)
+
   const { register, handleSubmit, reset } =  useForm();
 
   const { loginUser } =  useAuth();
 
-  const submit = (data) => {
-    loginUser(data);
+  const submit = async(data) => {
+      loginUser(data)
+      reset({
+          email: '',
+          password: '',
+        })
   }
 
   return (

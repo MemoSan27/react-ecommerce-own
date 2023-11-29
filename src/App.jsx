@@ -7,6 +7,8 @@ import RegisterPage from './pages/RegisterPage'
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 import CartPage from './pages/CartPage'
+import User from './components/LoginPage/User'
+import ProtectedRoutes from './components/ProtectedRoutes'
 
 function App() {
     
@@ -18,7 +20,10 @@ function App() {
           <Route path='/product/:id' element={<ProductIdPage />} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/cart' element={<CartPage />} />
+          <Route element={<ProtectedRoutes />}> 
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='/user' element={<User />} />
+          </Route>
       </Routes>
       <Footer/>
     </>

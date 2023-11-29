@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './styles/ProductInfo.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCartThunk } from '../../store/slices/cart.slice';
+import { useNavigate } from 'react-router-dom';
 
 const ProductInfo = ({ product }) => {
 
@@ -10,7 +11,10 @@ const ProductInfo = ({ product }) => {
   const [ active, setActive ] = useState(0);
   const [ prev, setPrev ] = useState(false);
   
+  const logged = useSelector(store => store.login);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setImagenActual(0);
@@ -31,7 +35,12 @@ const ProductInfo = ({ product }) => {
   const cantidad = product?.images.length;
 
   const handleAddToCart = () => {
-    dispatch(addProductToCartThunk(product.id, quantity));
+    if(logged === true){
+      dispatch(addProductToCartThunk(product.id, quantity));
+    }
+    else{
+      navigate('/login')
+    }
   }
 
   const nextImage = () => {

@@ -48,5 +48,10 @@
 .totals{
     font-weight: 900;
     text-align: end;
-    font-size: 3.5rem;
+    font-size: 1.8rem;
+}
+@media ( min-width: 768px ) { 
+    .totals{
+        font-size: 3rem;
+    }
 }

@@ -36,9 +36,12 @@ const CartPage = () => {
         }
       </div>
       <hr className='hr' />
-      <footer className='cart__footer'>
-        <span className='cart__card-title totals'> Total: </span>
-        <span className='cart__card-title totals'> $ &nbsp;  {addComa(totalPriceCart.toFixed(2))} </span>
+      <footer className='purchase__section'>
+        <button className='btnCheckout'> <span> Checkout </span> <i className='creditCard bx bxs-credit-card'></i></button>
+        <div className='cart__footer'>
+          <span className='cart__card-title totals'> Total: </span>
+          <span className='cart__card-title totals'> $ &nbsp;  {addComa(totalPriceCart.toFixed(2))} </span>
+        </div >
       </footer>
     </div>
   )

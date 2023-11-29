@@ -19,5 +19,45 @@
 .cart__footer{
     display: flex;
     justify-content: end;
-    gap: 5rem;
+    gap: 1rem;
+}
+@media ( min-width: 768px ) { 
+    .cart__footer{
+        gap: 5rem;
+    }
+}
+.purchase__section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}
+.btnCheckout{
+    font-family: var(--secondFont);
+    font-size: 1.5rem;
+    padding: 1rem 1rem;
+    background-color: var(--bgLoginRegister);
+    color: var(--containerLR);
+    border: none;
+    border-radius: 1rem;
+    transition: background-color 300ms ease-in-out;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+@media ( min-width: 768px ) { 
+    .btnCheckout{
+        font-size: 2rem;
+    }
+}
+.btnCheckout:hover{
+    background-color: var(--darkenBlue);
+}
+.creditCard{
+    font-size: 2.5rem;
+}
+@media ( min-width: 768px ) { 
+    .creditCard{
+        font-size: 3rem;
+    }
 }

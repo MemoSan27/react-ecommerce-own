@@ -28,6 +28,9 @@ const FormLogin = () => {
 
   const { loginUser } =  useAuth();
 
+  const localst = JSON.parse(localStorage?.getItem('user'))
+  const completeName = `${localst?.name} ${localst?.lastname}`
+
   const submit = async(data) => {
       const result = await loginUser(data);
       setError(false);
@@ -38,7 +41,7 @@ const FormLogin = () => {
               password: '',
           })
           navigate('/')
-        setError(false);
+          setError(false);
       }else{
         setError(true);
         setErrorMesage(result.errorMessage.response.data.error);

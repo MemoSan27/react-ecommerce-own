@@ -24,6 +24,13 @@ const useAuth = () => {
                 lastname: res.data.user.lastName 
             }))
             dispatch(setIsLogged(true));
+            const localst = JSON.parse(localStorage?.getItem('user'))
+            const completeName = `${localst?.name} ${localst?.lastname}`
+            Swal.fire({
+                icon: "success",
+                title: `Welcome ${completeName}`,
+                timer: 1500,
+             });
             return {
                 res,
                 ok: true,

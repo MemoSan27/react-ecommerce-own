@@ -14,10 +14,9 @@ const useAuth = () => {
     }
 
     const loginUser = async(credentials) => {
-        const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/users/login';
-        axios.post(url, credentials)
-        .then(res => {
-            console.log(res.data)
+        try{
+            const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/users/login';
+            const res = await axios.post(url, credentials);
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user', JSON.stringify({
                 email: res.data.user.email,
@@ -25,8 +24,17 @@ const useAuth = () => {
                 lastname: res.data.user.lastName 
             }))
             dispatch(setIsLogged(true));
-        })
-        .catch(err => console.log(err))
+            return {
+                res,
+                ok: true,
+            }
+        }catch(error){
+            return{
+                ok: false,
+                errorMessage: error,
+            }
+        }
+        
     }
   
     return { registerUser, loginUser }

@@ -2,11 +2,14 @@ import { useForm } from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
 import logo from "../../assets/img/onshop.png";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+
 
 const FormLogin = () => {
 
-  const logged = useSelector(store => store.login);
+  const [ error, setError ] = useState(false);
+  const [ errorMessage, setErrorMesage ] = useState('');
+  
   const navigate = useNavigate();
 
     const handleNavigateHome = () => {
@@ -19,18 +22,27 @@ const FormLogin = () => {
       navigate(`/register`)
   }
 
-  console.log(logged)
 
-  const { register, handleSubmit, reset } =  useForm();
+
+ const { register, handleSubmit, reset } =  useForm();
 
   const { loginUser } =  useAuth();
 
   const submit = async(data) => {
-      loginUser(data)
-      reset({
-          email: '',
-          password: '',
-        })
+      const result = await loginUser(data);
+      setError(false);
+      setErrorMesage('');
+      if(result.ok){
+        reset({
+              email: '',
+              password: '',
+          })
+          navigate('/')
+        setError(false);
+      }else{
+        setError(true);
+        setErrorMesage(result.errorMessage.response.data.error);
+      }
   }
 
   return (
@@ -39,6 +51,7 @@ const FormLogin = () => {
         <div className="shop" onClick={handleNavigateHome}>
           <img src={logo} alt="Company Logo" />
         </div>
+        { error && (<div className="error__message"> <p>{errorMessage}</p> </div> ) }
         <label>
           <span className="form__span">Email:</span>
           <input {...register('email')} type="email" className="form__input"></input>
@@ -52,6 +65,7 @@ const FormLogin = () => {
         <button className="form__submit">Login</button>
         <p className="question"> Dont you have an account yet?</p>
         <button className="form__submit registerBtn" onClick={handleNavigateReg}>Register</button>
+        
     </form>
     
   )

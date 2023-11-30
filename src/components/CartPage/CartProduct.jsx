@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteProductFromCartThunk, getCartThunk } from '../../store/slices/cart.slice';
 import './styles/CartProduct.css'
@@ -8,6 +8,7 @@ import getConfigToken from '../../utils/getTokenConfig';
 
 const CartProduct = ({ product }) => {
 
+  const [ disabled, setDisabled ] = useState(false);
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -26,20 +27,31 @@ const CartProduct = ({ product }) => {
     });
   }
 
+  
   const addQuantity = (product) => {
+    
     const data = {
         "quantity": product.quantity + 1
     }
     axios.put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${product.id}`, data, getConfigToken())
-        .then(res => dispatch(getCartThunk()))
+        .then(res => {
+          setDisabled(true)
+          dispatch(getCartThunk())
+        })
+        .finally(() => setDisabled(false))
+    
   }
 
+  console.log(disabled)
+  
   const restQuantity = (product) => {
     const data = {
         "quantity": (product.quantity > 1) && product.quantity - 1  
     }
     axios.put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${product.id}`, data, getConfigToken())
-        .then(res => dispatch(getCartThunk()))
+        .then(res => {
+          dispatch(getCartThunk())
+        })
 }
 
   return (
@@ -52,7 +64,12 @@ const CartProduct = ({ product }) => {
         <div className='productInfo__quantity'>
               <button className='productInfo__btn'onClick={() => restQuantity(product)} >-</button>
               <div className='productInfo__number'>{product.quantity}</div>
-              <button className='productInfo__btn productInfo__plus' onClick={() => addQuantity(product)}>+</button>
+              <button 
+                className={'productInfo__btn productInfo__plus'}  
+                onClick={() => addQuantity(product)}
+              >
+                +
+              </button>
         </div>
         <div className='divider'>
           <div>

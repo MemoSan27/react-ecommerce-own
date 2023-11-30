@@ -1,15 +1,30 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import addComa from '../../utils/addComa'
+import './styles/PurchaseCard.css'
 
 const PurchaseCard = ({ purchase }) => {
+
+    const navigate = useNavigate()
+
+    const handleNavigate = () =>{
+        window.scrollTo(0,0);
+        navigate(`/product/${purchase.product.id}`)
+    }
+
   return (
-    <article>
-      <header>
-        <img src={purchase.product.images[0].url} alt='Img Purchase' />
-      </header>
-      <h3>{purchase.product.title}</h3>
-      <p>{purchase.quantity}</p>
-      <p>{(purchase.product.price * purchase.quantity)}</p>
-    </article>
+    <>
+        
+        <article className='purchase__card' onClick={handleNavigate}>
+        <header className='purchase__card-imgCont'>
+            <img className='purchase__card-img' src={purchase.product.images[0].url} alt='Img Purchase' />
+        </header>
+        <h3 className='purchase__desc'>{purchase.product.title}</h3>
+        <div className='purchace__quantity-box'>
+            <p className='purchase__desc quant'>{purchase.quantity}</p>
+        </div>
+        <p className='purchase__desc'>$ {addComa((purchase.product.price * purchase.quantity).toFixed(2))}</p>
+        </article>
+    </>
   )
 }
 

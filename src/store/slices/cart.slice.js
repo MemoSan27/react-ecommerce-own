@@ -65,3 +65,13 @@ export const deleteProductFromCartThunk = (id) => (dispatch) => {
     })
     .catch(err => console.log(err))
 }
+
+
+/* export const modifyProductFromCartThunk = (id, data) => (dispatch) => {
+    const url = `${baseURL}/${id}`
+    axios.put(url, data, getConfigToken())
+    .then(res => {
+        console.log(res.data)
+        })    
+    .catch(err => console.log(err))
+} */

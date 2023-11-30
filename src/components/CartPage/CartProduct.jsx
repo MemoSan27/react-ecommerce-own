@@ -43,8 +43,6 @@ const CartProduct = ({ product }) => {
     
   }
 
-  console.log(disabled)
-  
   const restQuantity = (product) => {
     const data = {
         "quantity": (product.quantity > 1) && product.quantity - 1  

@@ -28,7 +28,6 @@ const CartPage = () => {
     const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/purchases'
     axios.post(url, '', getConfigToken())
     .then(res => {
-      console.log(res.data)
       dispatch(setCart([]))
       Swal.fire({
         icon: "success",

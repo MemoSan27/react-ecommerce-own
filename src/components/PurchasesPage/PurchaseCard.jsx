@@ -1,17 +1,16 @@
 import { useNavigate } from 'react-router-dom'
-import addComa from '../../utils/addComa'
 import './styles/PurchaseCard.css'
 
 const PurchaseCard = ({ purchase }) => {
 
+    
     const navigate = useNavigate()
-
     const handleNavigate = () =>{
         window.scrollTo(0,0);
         navigate(`/product/${purchase.product.id}`)
     }
 
-  return (
+    return (
     <>
         
         <article className='purchase__card' onClick={handleNavigate}>

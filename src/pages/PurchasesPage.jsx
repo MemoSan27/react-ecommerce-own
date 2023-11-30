@@ -1,19 +1,24 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import './styles/Purchases.css'
 import getConfigToken from '../utils/getTokenConfig'
 import PurchaseCard from '../components/PurchasesPage/PurchaseCard'
 import Loading from '../components/Loading'
+import Pagination from '../components/PurchasesPage/Pagination'
 
 const PurchasesPage = () => {
 
-  const [ purchases, getPurchases] = useFetch()
+    const [page, setPage] = useState(1);  
+  const [ purchases, getPurchases] = useFetch();
 
   useEffect( () => {
     const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/purchases'
     getPurchases(url, getConfigToken())
   }, [])
 
+  //===== estados y variables de paginación=====
+  const perPages = 5;
+  const quantyPages = Math.ceil(purchases?.length / perPages);
   
   return (
     
@@ -27,14 +32,23 @@ const PurchasesPage = () => {
                 <p className='purchase__desc tableTop'>Quantity</p>
                 <p className='purchase__desc tableTop'>Unit Price</p>
             </div>
+
+            <section>
+              {purchases?.[0] && <Pagination quantyPages={quantyPages} page={page} setPage={setPage}/>}
+            </section> 
+               
             {
                 purchases?.map(purchase => (
                     <PurchaseCard 
                         key={purchase.id}
                         purchase={purchase}
                     />
-                ))
+                )).slice((page - 1)* perPages, (page - 1)* perPages + perPages)
             }
+
+            <section>
+              {purchases?.[0] && <Pagination quantyPages={quantyPages} page={page} setPage={setPage}/>}
+            </section>
 
             {
                 !purchases?.[0] &&

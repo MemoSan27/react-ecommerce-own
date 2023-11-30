@@ -75,7 +75,7 @@ label{
 }
 .form{
     background-color: var(--containerLR);
-    max-width: 35rem;
+    max-width: 45rem;
     width: 80%;
     margin: 12rem auto;
     padding: 5rem;

@@ -54,6 +54,11 @@ const FormLogin = () => {
         <div className="shop" onClick={handleNavigateHome}>
           <img src={logo} alt="Company Logo" />
         </div>
+        <div className="testing__data">
+          <p className="test__title">Test data</p>
+          <p className="test__info"> <i class='bx bx-envelope' ></i> john@gmail.com</p>
+          <p className="test__info"><i class='bx bx-key' ></i> john1234</p>
+        </div>
         { error && (<div className="error__message"> <p>{errorMessage}</p> </div> ) }
         <label>
           <span className="form__span">Email:</span>

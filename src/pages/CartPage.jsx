@@ -6,6 +6,7 @@ import CartProduct from '../components/CartPage/CartProduct'
 import addComa from '../utils/addComa'
 import axios from 'axios'
 import getConfigToken from '../utils/getTokenConfig'
+import { useNavigate } from 'react-router-dom'
 
 
 const CartPage = () => {
@@ -13,6 +14,7 @@ const CartPage = () => {
   const cart = useSelector(store => store.cart)
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect( () => {
     dispatch(getCartThunk());
@@ -28,6 +30,12 @@ const CartPage = () => {
     .then(res => {
       console.log(res.data)
       dispatch(setCart([]))
+      Swal.fire({
+        icon: "success",
+        title: `Thanks for your purchase, we would be glad you come back again soon :)`,
+        
+     });
+      navigate('/purchases')
     })
     .catch(err => console.log(err))
   }

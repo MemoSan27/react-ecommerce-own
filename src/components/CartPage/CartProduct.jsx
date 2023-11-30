@@ -5,6 +5,7 @@ import './styles/CartProduct.css'
 import addComa from '../../utils/addComa';
 import axios from 'axios';
 import getConfigToken from '../../utils/getTokenConfig';
+import { useNavigate } from 'react-router-dom';
 
 const CartProduct = ({ product }) => {
 

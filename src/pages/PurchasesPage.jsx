@@ -52,7 +52,7 @@ const PurchasesPage = () => {
 
             {
                 !purchases?.[0] &&
-                (<><hr className='hr' /> <h1 className='page__title cart__title'> No articles in your car yet</h1></>)
+                (<><hr className='hr' /> <h1 className='page__title cart__title'> No articles in your history yet</h1></>)
             }
         </div>
     </div>

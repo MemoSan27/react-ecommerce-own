@@ -22,7 +22,7 @@ const PurchaseCard = ({ purchase }) => {
         <div className='purchace__quantity-box'>
             <p className='purchase__desc quant'>{purchase.quantity}</p>
         </div>
-        <p className='purchase__desc'>$ {addComa((purchase.product.price * purchase.quantity).toFixed(2))}</p>
+        <p className='purchase__desc'>$ {purchase.product.price}</p>
         </article>
     </>
   )

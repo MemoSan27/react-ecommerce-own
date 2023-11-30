@@ -35,10 +35,9 @@ const CartProduct = ({ product }) => {
     }
     axios.put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${product.id}`, data, getConfigToken())
         .then(res => {
-          setDisabled(true)
           dispatch(getCartThunk())
         })
-        .finally(() => setDisabled(false))
+        
     
   }
 

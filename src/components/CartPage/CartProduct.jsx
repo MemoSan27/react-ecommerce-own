@@ -1,8 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteProductFromCartThunk } from '../../store/slices/cart.slice';
+import { deleteProductFromCartThunk, getCartThunk } from '../../store/slices/cart.slice';
 import './styles/CartProduct.css'
 import addComa from '../../utils/addComa';
+import axios from 'axios';
+import getConfigToken from '../../utils/getTokenConfig';
 
 const CartProduct = ({ product }) => {
 
@@ -24,9 +26,21 @@ const CartProduct = ({ product }) => {
     });
   }
 
-  const handlePlus = () => {
-    
+  const addQuantity = (product) => {
+    const data = {
+        "quantity": product.quantity + 1
+    }
+    axios.put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${product.id}`, data, getConfigToken())
+        .then(res => dispatch(getCartThunk()))
   }
+
+  const restQuantity = (product) => {
+    const data = {
+        "quantity": (product.quantity > 1) && product.quantity - 1  
+    }
+    axios.put(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${product.id}`, data, getConfigToken())
+        .then(res => dispatch(getCartThunk()))
+}
 
   return (
     <section className='cart__card-product'>
@@ -36,9 +50,9 @@ const CartProduct = ({ product }) => {
       <article>
         <h3 className='cart__card-title'>{product.product.title}</h3>
         <div className='productInfo__quantity'>
-              <button className='productInfo__btn'>-</button>
+              <button className='productInfo__btn'onClick={() => restQuantity(product)} >-</button>
               <div className='productInfo__number'>{product.quantity}</div>
-              <button className='productInfo__btn productInfo__plus'>+</button>
+              <button className='productInfo__btn productInfo__plus' onClick={() => addQuantity(product)}>+</button>
         </div>
         <div className='divider'>
           <div>

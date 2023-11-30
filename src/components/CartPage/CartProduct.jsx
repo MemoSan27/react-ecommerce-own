@@ -37,6 +37,7 @@ const CartProduct = ({ product }) => {
         .then(res => {
           dispatch(getCartThunk())
         })
+        .finally(() => setDisabled(false))
         
     
   }
@@ -51,6 +52,8 @@ const CartProduct = ({ product }) => {
         .then(res => {
           dispatch(getCartThunk())
         })
+        .finally(() => setDisabled(false))
+        
 }
 
   return (
@@ -61,11 +64,18 @@ const CartProduct = ({ product }) => {
       <article>
         <h3 className='cart__card-title'>{product.product.title}</h3>
         <div className='productInfo__quantity'>
-              <button className='productInfo__btn'onClick={() => restQuantity(product)} >-</button>
+              <button 
+                className='productInfo__btn' 
+                onClick={() => {restQuantity(product); setDisabled(true)}}
+                disabled={disabled} 
+              >
+                -
+              </button>
               <div className='productInfo__number'>{product.quantity}</div>
               <button 
                 className={'productInfo__btn productInfo__plus'}  
-                onClick={() => addQuantity(product)}
+                onClick={() => {addQuantity(product); setDisabled(true)}}
+                disabled={disabled}
               >
                 +
               </button>

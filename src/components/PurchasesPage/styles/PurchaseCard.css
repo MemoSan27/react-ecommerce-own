@@ -5,11 +5,18 @@
     gap: 3rem;
     align-items: center;
 }
+.purchase__card{
+    box-shadow: 1px 4px 26px 0px rgba(0,0,0,0.75);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 300ms;
+}
 .purchase__card:hover{
     cursor: pointer;
+    transform: scale(1.1);
 }
 .purchase__card-imgCont{
-    height: 8rem;
+    height: 10rem;
 }
 .purchase__card-img{
     height: 100%;

@@ -9,6 +9,7 @@ import Footer from './components/shared/Footer'
 import CartPage from './pages/CartPage'
 import User from './components/LoginPage/User'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import PurchasesPage from './pages/PurchasesPage'
 
 function App() {
     
@@ -23,6 +24,7 @@ function App() {
           <Route element={<ProtectedRoutes />}> 
             <Route path='/cart' element={<CartPage />} />
             <Route path='/user' element={<User />} />
+            <Route path='/purchases' element={<PurchasesPage />} />
           </Route>
       </Routes>
       <Footer/>

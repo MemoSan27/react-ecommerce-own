@@ -22,6 +22,9 @@ const CartProduct = ({ product }) => {
         dispatch(deleteProductFromCartThunk(product.id))
       }
     });
+  }
+
+  const handlePlus = () => {
     
   }
 
@@ -32,7 +35,11 @@ const CartProduct = ({ product }) => {
       </header>
       <article>
         <h3 className='cart__card-title'>{product.product.title}</h3>
-        <span className='cart__card-quantity'>Quantity: {product.quantity}</span>
+        <div className='productInfo__quantity'>
+              <button className='productInfo__btn'>-</button>
+              <div className='productInfo__number'>{product.quantity}</div>
+              <button className='productInfo__btn productInfo__plus'>+</button>
+        </div>
         <div className='divider'>
           <div>
             <p className='cart__card-quantity'>Unit Price: $ {addComa(product.product.price)} </p>

@@ -10,7 +10,7 @@ const useAuth = () => {
         const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/users';
         axios.post(url, user)
         .then(res => {
-            console.log(res.data)
+            
             Swal.fire({
                 icon: "success",
                 title: `User registered success`,

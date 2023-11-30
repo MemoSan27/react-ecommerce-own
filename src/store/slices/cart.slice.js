@@ -33,7 +33,7 @@ export const addProductToCartThunk = (productId, quantity = 1) => (dispatch) => 
     }
     axios.post(url, data, getConfigToken())
     .then(res => {
-        console.log(res.data)
+        
         Swal.fire({
             icon: "success",
             title: `Product added to cart success`,
